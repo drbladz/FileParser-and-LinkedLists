@@ -1,12 +1,18 @@
-import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
 
-    public static void fileProcess(Scanner sc, String scName, String fileName){
+    public static void fileVowelProcess(Scanner sc, String scName, String fileName) {
         PrintWriter pw = null;
-
-        try{
+        String word = "";
+        ArrayList<String> vw = new ArrayList<String>();
+        try {
             pw = new PrintWriter(new FileOutputStream(fileName, true));
 
         } catch (FileNotFoundException e) {
@@ -14,26 +20,32 @@ public class Main {
             System.out.println("Program will terminate.");
             System.exit(0);
         }
-        while(sc.hasNextLine()){
+        while (sc.hasNext()) {
             int count = 0;
 
+            word = sc.next();
+            String rwords = word.replaceAll("[^a-zA-Z0-9]", "");
 
-            String word = sc.next();
-
-            for (int i = 0; i< word.length(); i++){
-                if(word.charAt(i)=='a' || word.charAt(i)=='e' || word.charAt(i)=='i' || word.charAt(i)=='o' || word.charAt(i)=='u'){
+            for (int i = 0; i < rwords.length(); i++) {
+                if (rwords.charAt(i) == 'a' || rwords.charAt(i) == 'e' || rwords.charAt(i) == 'i' || rwords.charAt(i) == 'o' || rwords.charAt(i) == 'u'
+                        || rwords.charAt(i) == 'A'|| rwords.charAt(i) == 'E'|| rwords.charAt(i) == 'I'|| rwords.charAt(i) == 'O'|| rwords.charAt(i) == 'U') {
                     count++;
                 }
 
             }
-                if(count > 3){
-                    pw.print(word + "\n");
-                }
+            if (count > 3) {
+                vw.add(rwords);
+                //pw.print(word + "\n");
+            }
 
+        }
+        pw.println("The word count is: " + vw.size());
+        for (int i = 0; i< vw.size(); i++){
+            pw.println(vw.get(i));
         }
         pw.close();
         sc.close();
-        }
+    }
 
     public static void main(String[] args) {
         System.out.println("hello");
@@ -41,15 +53,15 @@ public class Main {
 
         Scanner sc = null;
 
-        try{
+        try {
             sc = new Scanner(new FileInputStream("history_of_java.txt"));
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("Could not open input file for reading. Please check if file exists");
             System.out.println("Program will terminate.");
             System.exit(0);
         }
-        fileProcess(sc,"history_of_java.txt", "testfile.txt");
-        System.out.println("yo");
+
+        fileVowelProcess(sc, "history_of_java.txt", "vowel_verbiage.txt");
+
     }
 }
