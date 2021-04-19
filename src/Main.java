@@ -79,6 +79,35 @@ public class Main {
         sc.close();
     }
 
+    public static void fileDistinctProcess(Scanner sc, String scName, String fileName) throws IOException {
+        PrintWriter pw = null;
+        String word = "";
+        String rwords = "";
+        ArrayList<String> dw = new ArrayList<String>();
+        try {
+            pw = new PrintWriter(new FileOutputStream(fileName, true));
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not create a file.");
+            System.out.println("Program will terminate.");
+            System.exit(0);
+        }
+        while (sc.hasNext()) {
+            word = sc.next();
+            rwords = word.replaceAll("[^a-zA-Z0-9]", "");
+            if(!(dw.contains(rwords))){
+                dw.add(rwords);
+            }
+
+        }
+        pw.println("The word count is: " + dw.size());
+        for (int i = 0; i < dw.size(); i++) {
+            pw.println(dw.get(i));
+        }
+        pw.close();
+        sc.close();
+    }
+
 
     public static void main(String[] args) throws IOException {
         System.out.println("hello");
@@ -100,6 +129,8 @@ public class Main {
 
         fileVowelProcess(sc, "history_of_java.txt", "vowel_verbiage.txt");
         fileObsessiveProcess(sc2, "history_of_java.txt", "obsessive_o.txt");
+        fileDistinctProcess(sc3, "history_of_java.txt", "distinct_data.txt");
+
 
     }
 }
