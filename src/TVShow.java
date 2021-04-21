@@ -95,7 +95,7 @@ class Show extends TVShow implements Watchable{
 	{
 		if(this.startTime == s.startTime && this.endTime == s.endTime)
 			return "Same Time";
-		if(this.startTime >= s.endTime || this.endTime <= s.startTime)
+		else if(this.startTime >= s.endTime || this.endTime <= s.startTime)
 			return "Different time";
 		else {
 			return "Some overlap";
