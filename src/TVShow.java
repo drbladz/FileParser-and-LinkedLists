@@ -157,6 +157,7 @@ class ShowList {
 		}
 	}
 	
+	
 	private ShowNode head;
 	private int size;
 	
@@ -183,7 +184,7 @@ class ShowList {
 	{
 		if (index > size-1)
 		{
-			System.out.println("ERROR: Given index is out of range! Program will terminate. \n");
+			System.out.println("ERROR: Given index is out of range! Program will terminate.");
 			throw new NoSuchElementException();
 		}
 		int i = 0;
@@ -212,6 +213,97 @@ class ShowList {
 		size++;
 	}
 	
+	public void deleteFromIndex(int index) 
+	{
+		if (index > size-1)
+		{
+			System.out.println("ERROR: Given index is out of range! Program will terminate.");
+			throw new NoSuchElementException();
+		}
+
+		int i = 0;
+		ShowNode temp = head;
+		
+		// Handle the special case when list has only one node
+		if (size == 1)
+		{
+			head = null;
+			size--;
+			return;
+		}
+		
+		// Handle the special case when deletion on head
+		if (index == 0)
+		{
+			head = head.next;
+		}
+		// When deletion from the middle
+		else	
+		{
+			while (i != index -1)	// Stop at the node that precedes index
+			{
+				temp = temp.next;
+				i++;
+			}
+			temp.next = temp.next.next;
+		}
+		size--;
+
+	}
+	
+	public boolean deleteFromStart()
+	{
+		if (head != null)
+		{
+			head = head.next;
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public void replaceAtIndex(Show s, int index)
+	{
+		if (index > size-1)
+		{
+			System.out.println("ERROR: Given index is out of range! Program will terminate.");
+			throw new NoSuchElementException();
+		}
+		
+		int i = 0;
+		ShowNode temp = head;
+		while(i != index)
+		{
+			temp = temp.next;
+			i++;
+		}
+		temp.sw = s;
+	}
+	
+	public ShowNode find(String id) 
+	{
+		ShowNode temp = head;
+		int count = 0;
+		while(temp != null)
+		{
+			if(temp.sw.showID == id)
+				return temp;
+			temp = temp.next;
+			count++;
+		}
+		System.out.println(count+" iteration(s) were made.");
+		return null;	
+	}
+	
+	public boolean contains(String id)
+	{
+		if(find(id) != null)
+			return true;
+		else 
+			return false;
+	}
+	
+	//need to do equals method
 }
 		
 			
