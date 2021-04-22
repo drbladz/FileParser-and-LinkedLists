@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class TVShow {
@@ -66,12 +67,12 @@ class Show extends TVShow implements Watchable{
 		endTime = end;
 	}
 		
-	public Show clone(Show s) 
+	public Show clone() 
 	{
 		Scanner kb = new Scanner(System.in);
 		System.out.println("Enter a new ShowID: ");
 		String id = kb.nextLine();
-		Show copy = new Show(id, s.showName, s.startTime, s.endTime);
+		Show copy = new Show(id, this.showName, this.startTime, this.endTime);
 		kb.close();
 		return copy;
 	}
@@ -103,7 +104,114 @@ class Show extends TVShow implements Watchable{
 	}
 		
 		
+}
+
+
+class ShowList {
+	
+	private class ShowNode {
+		private Show sw;
+		private ShowNode next;
 		
+		public ShowNode() 
+		{
+			sw = null;
+			next = null;
+		}
+		
+		public ShowNode(Show s, ShowNode nxt) 
+		{
+			sw = s;
+			next = nxt;
+		}
+		
+		public ShowNode(ShowNode cnode) 
+		{
+			sw = cnode.sw.clone();
+			next = cnode.next;
+		}
+		
+		public ShowNode clone() 
+		{
+			return new ShowNode(this);
+		}
+		
+		public Show getShow() 
+		{
+			return sw;
+		}
+		
+		public void setShow(Show s) 
+		{
+			sw = s;
+		}
+		
+		public ShowNode getNext() 
+		{
+			return next;
+		}
+		
+		public void setNext(ShowNode nxt)
+		{
+			next = nxt;
+		}
+	}
+	
+	private ShowNode head;
+	private int size;
+	
+	public ShowList()
+	{
+		head = null;
+		size = 0;
+	}
+	
+	public ShowList(ShowList lst) 
+	{
+		head = lst.head;
+		size = lst.size;
+	}
+	
+	public void addToStart(Show s) 
+	{
+		ShowNode sn = new ShowNode(s, head);
+		head = sn;
+		sn = null;
+	}
+	
+	public void insertAtIndex(Show s, int index)
+	{
+		if (index > size-1)
+		{
+			System.out.println("ERROR: Given index is out of range! Program will terminate. \n");
+			throw new NoSuchElementException();
+		}
+		int i = 0;
+		ShowNode temp = head;
+		
+		// Handle the special case when insertion on head
+		if (index == 0)
+		{
+			ShowNode newNode = new ShowNode(s, head);
+			head = newNode;
+			newNode = null;
+		}
+		else
+		{
+			while (i != index-1)	// Stop at the node that precedes index
+			{
+				temp = temp.next;
+				i++;
+			}
+			// Now we are pointing at the node preceding index
+			ShowNode newNode = new ShowNode(s, temp.next);
+			// Next will point to temp.next
+			temp.next = newNode;
+			newNode = null;
+		}
+		size++;
+	}
+	
 }
 		
 			
