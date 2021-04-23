@@ -303,7 +303,10 @@ class ShowList {
 			return false;
 	}
 	
-	//need to do equals method
+	public boolean equals(ShowList lst) {
+		return(this.head.getShow().equals(lst.head.getShow()));
+	}
+	
 }
 		
 			
