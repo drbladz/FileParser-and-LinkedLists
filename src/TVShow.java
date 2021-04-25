@@ -109,7 +109,7 @@ class Show extends TVShow implements Watchable{
 
 class ShowList {
 	
-	private class ShowNode {
+	class ShowNode {
 		private Show sw;
 		private ShowNode next;
 		
@@ -178,6 +178,7 @@ class ShowList {
 		ShowNode sn = new ShowNode(s, head);
 		head = sn;
 		sn = null;
+		size++;
 	}
 	
 	public void insertAtIndex(Show s, int index)
