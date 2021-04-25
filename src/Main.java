@@ -1,3 +1,9 @@
+// -----------------------------------------------------
+// Assignment 4
+// Written by: Sam Mojaverian 40174101 and Tahmid Rahman 40174589
+// -----------------------------------------------------
+
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
