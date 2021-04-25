@@ -1,14 +1,10 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.PrintWriter;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class Main {
 
-    public static void fileVowelProcess(Scanner sc, String scName, String fileName) throws IOException {
+    public static void fileVowelProcess(Scanner sc, File f, String fileName) throws IOException {
         PrintWriter pw = null;
         String word = "";
         ArrayList<String> vw = new ArrayList<String>();
@@ -46,7 +42,7 @@ public class Main {
         sc.close();
     }
 
-    public static void fileObsessiveProcess(Scanner sc, String scName, String fileName) throws IOException {
+    public static void fileObsessiveProcess(Scanner sc, File f, String fileName) throws IOException {
         PrintWriter pw = null;
         String word = "";
         String rwords = "";
@@ -79,7 +75,7 @@ public class Main {
         sc.close();
     }
 
-    public static void fileDistinctProcess(Scanner sc, String scName, String fileName) throws IOException {
+    public static void fileDistinctProcess(Scanner sc, File f, String fileName) throws IOException {
         PrintWriter pw = null;
         String word = "";
         String rwords = "";
@@ -116,20 +112,24 @@ public class Main {
         Scanner sc = null;
         Scanner sc2 = null;
         Scanner sc3 = null;
-
+        Scanner scanner = new Scanner (System.in);
+        System.out.println("Enter Name of Desired Input File: ");
+        String fileName = scanner.next();
+        File chosen = new File(fileName);
         try {
-            sc = new Scanner(new FileInputStream("history_of_java.txt"));
-            sc2 = new Scanner(new FileInputStream("history_of_java.txt"));
-            sc3 = new Scanner(new FileInputStream("history_of_java.txt"));
+            sc = new Scanner(new FileInputStream(chosen));
+            sc2 = new Scanner(new FileInputStream(chosen));
+            sc3 = new Scanner(new FileInputStream(chosen));
         } catch (FileNotFoundException e) {
             System.out.println("Could not open input file for reading. Please check if file exists");
             System.out.println("Program will terminate.");
             System.exit(0);
         }
 
-        fileVowelProcess(sc, "history_of_java.txt", "vowel_verbiage.txt");
-        fileObsessiveProcess(sc2, "history_of_java.txt", "obsessive_o.txt");
-        fileDistinctProcess(sc3, "history_of_java.txt", "distinct_data.txt");
+
+        fileVowelProcess(sc, chosen, "vowel_verbiage.txt");
+        fileObsessiveProcess(sc2, chosen, "obsessive_o.txt");
+        fileDistinctProcess(sc3, chosen, "distinct_data.txt");
 
 
     }
