@@ -281,13 +281,13 @@ class ShowList {
 		temp.sw = s;
 	}
 	
-	public ShowNode find(String id)
+	public ShowNode find(String name)
 	{
 		ShowNode temp = head;
 		int count = 0;
 		while(temp != null)
 		{
-			if(temp.sw.showID == id)
+			if(temp.sw.getShowName().equals(name))
 				return temp;
 			temp = temp.next;
 			count++;
@@ -296,9 +296,9 @@ class ShowList {
 		return null;	
 	}
 	
-	public boolean contains(String id)
+	public boolean contains(String name)
 	{
-		if(find(id) != null)
+		if(find(name) != null)
 			return true;
 		else 
 			return false;
