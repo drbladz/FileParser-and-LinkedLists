@@ -3,7 +3,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class ProcessWishlist {
-
+	/**
+	 * main method
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		ShowList first = new ShowList();

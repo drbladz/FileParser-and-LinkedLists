@@ -3,7 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-
+    /**
+     * Vowel processing method
+     * @param sc
+     * @param f
+     * @param fileName
+     * @throws IOException
+     */
     public static void fileVowelProcess(Scanner sc, File f, String fileName) throws IOException {
         PrintWriter pw = null;
         String word = "";
@@ -42,6 +48,13 @@ public class Main {
         sc.close();
     }
 
+    /**
+     * Obsessive O processing method
+     * @param sc
+     * @param f
+     * @param fileName
+     * @throws IOException
+     */
     public static void fileObsessiveProcess(Scanner sc, File f, String fileName) throws IOException {
         PrintWriter pw = null;
         String word = "";
@@ -75,6 +88,13 @@ public class Main {
         sc.close();
     }
 
+    /**
+     * distinct processing method
+     * @param sc
+     * @param f
+     * @param fileName
+     * @throws IOException
+     */
     public static void fileDistinctProcess(Scanner sc, File f, String fileName) throws IOException {
         PrintWriter pw = null;
         String word = "";
@@ -104,7 +124,11 @@ public class Main {
         sc.close();
     }
 
-
+    /**
+     * main method
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         System.out.println("hello");
 
