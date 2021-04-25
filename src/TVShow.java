@@ -281,7 +281,7 @@ class ShowList {
 		temp.sw = s;
 	}
 	
-	public ShowNode find(String id) 
+	public ShowNode find(String id)
 	{
 		ShowNode temp = head;
 		int count = 0;
@@ -307,7 +307,20 @@ class ShowList {
 	public boolean equals(ShowList lst) {
 		return(this.head.getShow().equals(lst.head.getShow()));
 	}
-	
+
+	public void showListContents()
+	{
+		ShowNode temp = head;
+		if (temp == null)
+			System.out.println("\nThere is nothing to display; list is empty." );
+		else
+			System.out.println("\nHere are the contents of the list." );
+		while(temp != null)
+		{
+			System.out.println(temp.sw + " ---> ");
+			temp = temp.next;
+		}
+		System.out.println("X");			}
 }
 		
 			

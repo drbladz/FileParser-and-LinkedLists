@@ -54,16 +54,17 @@ public class ProcessWishlist {
 			if (info_nb==4) { //create Show object with the 4 info and reset loop
 				info_nb=1;
 				line=sc.nextLine();
-				Show CurrentShow = new Show(string_info[0],string_info[1],double_info[0],double_info[1]);
-				if (!first.contains(CurrentShow.showName)) { //check if same show repeated
-					first.addToStart(CurrentShow); //add show if it isn't in the list yet
-				}
-				info_nb=0;
-			}			
-			
-		}
-		
 
+				info_nb=0;
+			}
+			Show CurrentShow = new Show(string_info[0],string_info[1],double_info[0],double_info[1]);
+			if (!(first.contains(CurrentShow.showID))) { //check if same show repeated
+				first.addToStart(CurrentShow);
+			}
+
+		}
+
+		first.showListContents();
 	}
 
 }
