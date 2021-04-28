@@ -10,7 +10,15 @@ public class TVShow {
 
 }
 
+
 class Show extends TVShow implements Watchable{
+	/**
+	 * Constructor for show
+	 * @param showID
+	 * @param showName
+	 * @param startTime
+	 * @param endTime
+	 */
 	public Show(String showID, String showName, double startTime, double endTime)
 	{
 		this.showID = showID;
@@ -19,6 +27,11 @@ class Show extends TVShow implements Watchable{
 		this.endTime = endTime;
 	}
 
+	/**
+	 * default constructor
+	 * @param s
+	 * @param id
+	 */
 	public Show(Show s, String id)
 	{
 		showID = id;
@@ -27,46 +40,82 @@ class Show extends TVShow implements Watchable{
 		endTime = s.endTime;
 	}
 
+	/**
+	 * ShowID getter
+	 * @return
+	 */
 	public String getShowID()
 	{
 		return showID;
 	}
 
+	/**
+	 * ShowID setter
+	 * @param id
+	 */
 	public void setShowID(String id)
 	{
 		showID = id;
 	}
 
+	/**
+	 * showName getter
+	 * @return
+	 */
 	public String getShowName()
 	{
 		return showName;
 	}
 
+	/**
+	 * showName setter
+	 * @param name
+	 */
 	public void setShowName(String name)
 	{
 		showName = name;
 	}
 
+	/**
+	 * startTime getter
+	 * @return
+	 */
 	public double getStartTime()
 	{
 		return startTime;
 	}
 
+	/**
+	 * startTime setter
+	 * @param start
+	 */
 	public void setStartTime(double start)
 	{
 		startTime = start;
 	}
 
+	/**
+	 * endTime getter
+	 * @return
+	 */
 	public double getEndTime()
 	{
 		return endTime;
 	}
 
+	/**
+	 * endTime setter
+	 * @param end
+	 */
 	public void setEndTime(double end)
 	{
 		endTime = end;
 	}
 
+	/**
+	 * clone
+	 * @return
+	 */
 	public Show clone()
 	{
 		Scanner kb = new Scanner(System.in);
@@ -77,11 +126,20 @@ class Show extends TVShow implements Watchable{
 		return copy;
 	}
 
+	/**
+	 * toString
+	 * @return
+	 */
 	public String toString()
 	{
 		return "This show is "+showName+" with ID "+showID+". It starts at "+startTime+" and ends at "+endTime;
 	}
 
+	/**
+	 * equals
+	 * @param x
+	 * @return
+	 */
 	public boolean equals(Object x)
 	{
 		if(x == null || this == null || this.getClass() != x.getClass())
@@ -92,6 +150,11 @@ class Show extends TVShow implements Watchable{
 		}
 	}
 
+	/**
+	 * isOnSameTime method
+	 * @param s
+	 * @return
+	 */
 	public String isOnSameTime(Show s)
 	{
 		if(this.startTime == s.startTime && this.endTime == s.endTime)
@@ -113,44 +176,76 @@ class ShowList {
 		private Show sw;
 		private ShowNode next;
 
+		/**
+		 * default constructor
+		 */
 		public ShowNode()
 		{
 			sw = null;
 			next = null;
 		}
 
+		/**
+		 * constructor
+		 * @param s
+		 * @param nxt
+		 */
 		public ShowNode(Show s, ShowNode nxt)
 		{
 			sw = s;
 			next = nxt;
 		}
 
+		/**
+		 * copy constructor
+		 * @param cnode
+		 */
 		public ShowNode(ShowNode cnode)
 		{
 			sw = cnode.sw.clone();
 			next = cnode.next;
 		}
 
+		/**
+		 * clone method
+		 * @return
+		 */
 		public ShowNode clone()
 		{
 			return new ShowNode(this);
 		}
 
+		/**
+		 * show getter
+		 * @return
+		 */
 		public Show getShow()
 		{
 			return sw;
 		}
 
+		/**
+		 * show setter
+		 * @param s
+		 */
 		public void setShow(Show s)
 		{
 			sw = s;
 		}
 
+		/**
+		 * showNode getter
+		 * @return
+		 */
 		public ShowNode getNext()
 		{
 			return next;
 		}
 
+		/**
+		 * next setter
+		 * @param nxt
+		 */
 		public void setNext(ShowNode nxt)
 		{
 			next = nxt;
@@ -161,18 +256,29 @@ class ShowList {
 	private ShowNode head;
 	private int size;
 
+	/**
+	 * showList default constructor
+	 */
 	public ShowList()
 	{
 		head = null;
 		size = 0;
 	}
 
+	/**
+	 * showList constructor
+	 * @param lst
+	 */
 	public ShowList(ShowList lst)
 	{
 		head = lst.head;
 		size = lst.size;
 	}
 
+	/**
+	 * add to start
+	 * @param s
+	 */
 	public void addToStart(Show s)
 	{
 		ShowNode sn = new ShowNode(s, head);
@@ -181,6 +287,11 @@ class ShowList {
 		size++;
 	}
 
+	/**
+	 * insert at index
+	 * @param s
+	 * @param index
+	 */
 	public void insertAtIndex(Show s, int index)
 	{
 		if (index > size-1)
@@ -214,6 +325,10 @@ class ShowList {
 		size++;
 	}
 
+	/**
+	 * delete from index
+	 * @param index
+	 */
 	public void deleteFromIndex(int index)
 	{
 		if (index > size-1)
@@ -252,6 +367,10 @@ class ShowList {
 
 	}
 
+	/**
+	 * delete from start
+	 * @return
+	 */
 	public boolean deleteFromStart()
 	{
 		if (head != null)
@@ -263,6 +382,11 @@ class ShowList {
 			return false;
 	}
 
+	/**
+	 * replace at index
+	 * @param s
+	 * @param index
+	 */
 	public void replaceAtIndex(Show s, int index)
 	{
 		if (index > size-1)
@@ -281,6 +405,11 @@ class ShowList {
 		temp.sw = s;
 	}
 
+	/**
+	 * find
+	 * @param name
+	 * @return
+	 */
 	public ShowNode find(String name)
 	{
 		ShowNode temp = head;
@@ -296,6 +425,11 @@ class ShowList {
 		return null;
 	}
 
+	/**
+	 * find by ID
+	 * @param id
+	 * @return
+	 */
 	public Show findbyID(String id)
 	{
 		ShowNode temp = head;
@@ -311,6 +445,11 @@ class ShowList {
 		return null;
 	}
 
+	/**
+	 * contains
+	 * @param name
+	 * @return
+	 */
 	public boolean contains(String name)
 	{
 		if(find(name) != null)
@@ -319,10 +458,18 @@ class ShowList {
 			return false;
 	}
 
+	/**
+	 * equals
+	 * @param lst
+	 * @return
+	 */
 	public boolean equals(ShowList lst) {
 		return(this.head.getShow().equals(lst.head.getShow()));
 	}
 
+	/**
+	 * show list contents
+	 */
 	public void showListContents()
 	{
 		ShowNode temp = head;
