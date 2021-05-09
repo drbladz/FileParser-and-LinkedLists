@@ -444,6 +444,19 @@ class ShowList {
 		System.out.println(count+" iteration(s) were made.");
 		return null;
 	}
+	
+	/**
+	 * containsID
+	 * @param id
+	 * @return
+	 */
+	public boolean containsID(String id)
+	{
+		if(findbyID(id) != null)
+			return true;
+		else
+			return false;
+	}
 
 	/**
 	 * contains
@@ -460,11 +473,16 @@ class ShowList {
 
 	/**
 	 * equals
-	 * @param lst
+	 * @param x
 	 * @return
 	 */
-	public boolean equals(ShowList lst) {
-		return(this.head.getShow().equals(lst.head.getShow()));
+	public boolean equals(Object x) {
+		if(x == null || this == null || this.getClass() != x.getClass())
+			return false;
+		else {
+			ShowList lst = (ShowList)x;
+			return (this.head == lst.head && this.size == lst.size);
+		}
 	}
 
 	/**

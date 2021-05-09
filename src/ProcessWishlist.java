@@ -63,7 +63,7 @@ public class ProcessWishlist {
 
 
 		}
-
+		sc.close();
 		first.showListContents();
 
 		Scanner kb = new Scanner(System.in);
@@ -124,6 +124,7 @@ public class ProcessWishlist {
 							wishlist.remove(j);
 							if (!watchable.contains(check)) {
 								watchable.add(check);
+								System.out.println("User cannot watch "+Comparedshow.getShowName());
 							}
 						}
 						else {
@@ -144,34 +145,68 @@ public class ProcessWishlist {
 		//Search the list for IDs that user inputs
 		System.out.println("Enter a show ID to check: ");
 		String id1 = kb.next();
-		if (first.contains(id1)) {
+		if (first.containsID(id1)) {
 			System.out.println("The show " +id1+ " was found!");
 		}
 		else {
-			System.out.println("The show " +id1+ " was not found!");
+			System.out.println("The show " +id1+ " was not found.");
 		}
 
 		System.out.println("Enter another show ID to check: ");
 		String id2 = kb.next();
-		if (first.contains(id2)) {
+		if (first.containsID(id2)) {
 			System.out.println("The show " +id2+ " was found!");
 		}
 		else {
-			System.out.println("The show " +id2+ " was not found!");
+			System.out.println("The show " +id2+ " was not found.");
 		}
 
 
 		System.out.println("Enter another show ID to check: ");
 		String id3 = kb.next();
-		if (first.contains(id3)) {
+		if (first.containsID(id3)) {
 			System.out.println("The show " +id3+ " was found!");
 		}
 		else{
-			System.out.println("The show " +id3+ " was not found!");
+			System.out.println("The show " +id3+ " was not found.");
 		}
+		
+		Show s1 = new Show("ABC", "Peaky_Blinders", 17.00, 19.00);
+		Show s2 =  new Show("AFG", "Merlin", 22.00, 23.00);
+		Show s3 = new Show("ABC1", "Suits", 17.30, 18.30);
+		
+		//Test show overlap
+		System.out.println(s1.isOnSameTime(s3));
+		
+		//Test clone method
+		Show s4 = s2.clone();
+		System.out.println(s4);
+		
+		first.showListContents();
+		
+		//Test all methods
+		if(!first.equals(second))
+			System.out.println("Equal method works!");
+		
+		first.deleteFromIndex(7);
+		if(!first.contains("World_of_Dance"))
+			System.out.println("Delete from index method works!");
+		
+		first.insertAtIndex(s3, 7);
+		if(first.contains("Suits"))
+			System.out.println("Insert at index method works!");
+		
+		first.replaceAtIndex(s2, 6);
+		if(first.contains("Merlin"))
+			System.out.println("Replace at index method works!");
+		
+		first.deleteFromStart();
+		if(!first.contains("Shark_Tank"))
+			System.out.println("Delete from start method works!");
+		
+		first.showListContents();
 
-
-
+		
 		kb.close();
 	}
 }
