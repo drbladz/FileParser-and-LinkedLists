@@ -1,1 +1,3 @@
-# comp-249-assignment-4
+This program has two parts. The first consists of a file parser using Arraylists and File I/0 where the program asks for a .txt file and creates 3 different output files. One output file stores words that have 3 or more vowels, another will store all words staring with "o" and the last one will store all the distinct words from the text.
+
+The second program is a TV Show Guide, where the available shows are displayed through a Showlist object which is a LinkedList object created with node pointers. A .txt file states what is on the watchlist and on the wishlist of the user. The program then determines which show is watchable on the wishlist, depending on his watchlist.  
